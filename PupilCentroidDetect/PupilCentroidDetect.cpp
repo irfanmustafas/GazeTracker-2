@@ -9,6 +9,9 @@
 #include <Eigen/Core>
 #include <Eigen/Dense>
 
+#include<boost/thread.hpp>
+#include<boost/filesystem.hpp>
+
 #include "cv.h" 
 #include "highgui.h"  
 
@@ -22,9 +25,15 @@
 #include <opencv2/nonfree/features2d.hpp>
 
 #include "GlintRemover.h"
+#include "RectSelect.h"
 
 using namespace std;
 using namespace  cv;
+
+bool loadFileList(
+	const boost::filesystem::path &base_dir, 
+	const std::string &extension,  
+	std::vector<std::string> &FileList);  
 
 //int testSkin(int argc, char* argv[])  ;
 //int cutBlack(cv::Mat  src,cv::Mat dst);
@@ -54,10 +63,10 @@ void cvCannyImg(IplImage* rgb, IplImage*  Edge);
 //void testFast(int argc, char* argv[]);
 
 int testGlintRemover(int argc, char* argv[]);
+int testRectSelector(int argc, char* argv[]);
 
 int _tmain(int argc, char* argv[])
 {
-
 	//testSkin(argc,argv);
 	//testfingerTrack(argc,argv);
 	//testTrack(argc, argv);
@@ -68,6 +77,9 @@ int _tmain(int argc, char* argv[])
 	//testEigen(argc,argv);
 
 	//testKP(argc,argv);
+
+	//testRectSelector(argc,argv);
+
 	testGlintRemover(argc,argv);
 
 	return 0;
@@ -775,32 +787,129 @@ void cvCannyImg(IplImage* rgb, IplImage*  Edge)
 
 int testGlintRemover(int argc, char* argv[])
 {	
-	std::string Filepath(argv[2] );
 	
-	//1.测试Mat
-	cv::Mat matSrc =imread(Filepath.c_str(),1);
-	cv::Mat matDst =matSrc.clone();
+	int FlagInput = 0;
+	std::string PicsSeqFolder;
+	//const char* Method = argv[1];
+	if (argc>1){
+		FlagInput = atoi(argv[1] );
 
-	CGlintRemover  GlintRemoverM(matSrc);
-	GlintRemoverM.PreProcess();
-	GlintRemoverM.Process();
-	GlintRemoverM.GetOutcome(matDst);
+		std::string PicsFolder(argv[2] );
+		PicsSeqFolder = PicsFolder;
+	}
 
-	cv::imshow("matSrc",matSrc);
-	cv::imshow("matDst",matDst);
-	cv::waitKey(0);
+	
+	std::string   Extention(argv[3]);
+	std::vector<std::string>  Filelist(0);
 
-	//1.测试IplImage
-	IplImage*  imageSrc = cvLoadImage(Filepath.c_str() ); //随便放一张jpg图片在D盘或另行设置目录  
-	IplImage*  imageDst = cvCreateImage(cvGetSize(imageSrc ),8,1);
+	if(FlagInput > 0){
+		//getImageSeq( PicsSeqFolder, Extention, Filelist);//使用boost出现失误，不是正确排序的。
+		if(Filelist.size() < 1 )
+		{
+			const boost::filesystem::path  base_dir(PicsSeqFolder );
+			const std::string extension = Extention;
+			loadFileList(base_dir, extension, Filelist);  
+		}
+	}
 
-	CGlintRemover  GlintRemoverI(imageSrc);
-	GlintRemoverI.Process();
-	GlintRemoverI.GetOutcome(imageDst);
+	std::string Filepath;//argv[3] );
+	for (int i=0;i<Filelist.size();++i)
+	{
+		Filepath =Filelist[i];
 
-	cvShowImage("imageSrc", imageSrc);
-	cvShowImage("imageDst", imageDst);  
-	cvWaitKey(0); 
+		//1.测试Mat
+		cv::Mat matSrc =imread(Filepath.c_str(),1);
+		cv::Mat matDst =matSrc.clone();
+
+		CGlintRemover  GlintRemoverM(matSrc);
+		GlintRemoverM.PreProcess();
+		GlintRemoverM.Process();
+		GlintRemoverM.GetOutcome(matDst);
+
+		cv::imshow("matSrc",matSrc);
+		cv::imshow("matDst",matDst);
+
+		std::string FilepathDst=Filepath;
+		FilepathDst.append("arc.bmp");
+		cv::imwrite(FilepathDst.c_str(),matDst);
+
+		cv::waitKey(1000);
+
+		////1.测试IplImage
+		//IplImage*  imageSrc = cvLoadImage(Filepath.c_str() ); //随便放一张jpg图片在D盘或另行设置目录  
+		//IplImage*  imageDst = cvCreateImage(cvGetSize(imageSrc ),8,1);
+
+		//CGlintRemover  GlintRemoverI(imageSrc);
+		//GlintRemoverI.Process();
+		//GlintRemoverI.GetOutcome(imageDst);
+
+		//cvShowImage("imageSrc", imageSrc);
+		//cvShowImage("imageDst", imageDst);  
+		//cvWaitKey(500); 
+	}
 
 	return 1;
 }
+
+int testRectSelector(int argc, char* argv[])
+{
+	std::vector<cv::Mat> patchList(0);
+
+	//1.测试Mat
+	std::string Filepath(argv[2] );
+	cv::Mat matSrc =imread(Filepath.c_str(),1);
+
+	//CRectSelect Selector(matSrc.cols,matSrc.rows);
+	CRectSelect Selector(matSrc );
+	Selector.GetPicPatches(patchList);
+
+	const std::string FlagC = "Flag"; 
+	std::strstream   SFlagC; 
+	std::string  SNum;
+	for (int i=0;i< patchList.size();++i )
+	{
+		SFlagC.clear();
+		SNum.clear();
+
+		SFlagC<< i;
+		SFlagC>> SNum;
+
+		std::string Flag = FlagC;
+		Flag.append(SNum);
+
+		cv::imshow(Flag.c_str(),patchList[i]);
+	}
+
+	cv::waitKey(0);
+	return 1;
+}
+
+bool loadFileList(const boost::filesystem::path &base_dir, const std::string &extension,  
+				  std::vector<std::string> &FileList)  
+{  
+	if (!boost::filesystem::exists (base_dir) && !boost::filesystem::is_directory (base_dir))  
+		return true;  
+
+	boost::filesystem::directory_iterator it(base_dir);  
+
+	for (;  
+		it != boost::filesystem::directory_iterator ();  
+		++it)  
+	{  
+		if (boost::filesystem::is_directory (it->status ()))  
+		{  
+			std::stringstream ss;  
+			ss << it->path ();  
+			loadFileList (it->path (), extension, FileList);  
+		}  
+		if (boost::filesystem::is_regular_file (it->status ()) && boost::filesystem::extension (it->path ()) == extension)  
+		{  
+			std::string Path;  
+			Path =base_dir.string();  
+			Path.append("/");  
+			Path.append(it->path().filename().string());    
+			FileList.push_back (Path);  
+		}  
+	}  
+	return (true);  
+}  

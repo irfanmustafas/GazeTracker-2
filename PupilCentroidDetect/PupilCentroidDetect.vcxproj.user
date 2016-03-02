@@ -5,7 +5,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>3   E:/DataBase/Eye/1072-04-15/1216.850.A.20160219141347958.00.bmp      E:/DataBase/Eye/1072-04-15Out/</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>3 E:/DataBase/Eye/1072-04-15Novel/ .bmp E:/DataBase/face/examples/10001.jpg   E:/DataBase/Eye/1072-04-15Novel/832.612.A.20160219141403998.00.bmp E:/DataBase/Eye/1072-04-15Novel/ .bmp  E:/DataBase/HoughBubble.jpg   E:/DataBase/Eye/1072-04-15/1216.850.A.20160219141347958.00.bmp        E:/DataBase/Eye/1072-04-15Out/  </LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

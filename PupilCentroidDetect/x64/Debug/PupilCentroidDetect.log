@@ -1,15 +1,20 @@
-﻿生成启动时间为 2016/2/26 17:54:02。
+﻿生成启动时间为 2016/3/2 15:48:56。
      1>项目“E:\CodeBase\PupilCentroidDetect\PupilCentroidDetect\PupilCentroidDetect.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt GlintRemover.cpp
-         GlintRemover.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt PupilCentroidDetect.cpp
+         PupilCentroidDetect.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\CodeBase\PupilCentroidDetect\x64\Debug\PupilCentroidDetect.exe" /INCREMENTAL /NOLOGO opencv_core2410d.lib opencv_highgui2410d.lib opencv_imgproc2410d.lib opencv_ml2410d.lib opencv_nonfree2410d.lib opencv_features2d2410d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\CodeBase\PupilCentroidDetect\x64\Debug\PupilCentroidDetect.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\CodeBase\PupilCentroidDetect\x64\Debug\PupilCentroidDetect.lib" /MACHINE:X64 x64\Debug\GlintRemover.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\CodeBase\PupilCentroidDetect\x64\Debug\PupilCentroidDetect.exe" /INCREMENTAL /NOLOGO "libboost_filesystem-vc110-mt-gd-1_57.lib" "libboost_system-vc110-mt-gd-1_57.lib" opencv_core2410d.lib opencv_highgui2410d.lib opencv_imgproc2410d.lib opencv_ml2410d.lib opencv_nonfree2410d.lib opencv_features2d2410d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\CodeBase\PupilCentroidDetect\x64\Debug\PupilCentroidDetect.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\CodeBase\PupilCentroidDetect\x64\Debug\PupilCentroidDetect.lib" /MACHINE:X64 x64\Debug\D2DetectInPic.obj
+         x64\Debug\DataStruct.obj
+         x64\Debug\GlintRemover.obj
+         x64\Debug\Operater.obj
+         x64\Debug\ParamPupil.obj
          x64\Debug\PupilCentroidDetect.obj
+         x64\Debug\RectSelect.obj
          x64\Debug\stdafx.obj
          PupilCentroidDetect.vcxproj -> E:\CodeBase\PupilCentroidDetect\x64\Debug\PupilCentroidDetect.exe
      1>已完成生成项目“E:\CodeBase\PupilCentroidDetect\PupilCentroidDetect\PupilCentroidDetect.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:02.33
+已用时间 00:00:06.92

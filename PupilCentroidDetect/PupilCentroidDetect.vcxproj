@@ -73,8 +73,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Tools\openCV2.4.10\opencv\build\include;C:\Tools\openCV2.4.10\opencv\build\include\opencv;C:\Tools\openCV2.4.10\opencv\build\include\opencv2;C:\Tools\Eigen\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Tools\openCV2.4.10\opencv\build\x64\vc11\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Tools\openCV2.4.10\opencv\build\include;C:\Tools\openCV2.4.10\opencv\build\include\opencv;C:\Tools\openCV2.4.10\opencv\build\include\opencv2;C:\Tools\Eigen\include;C:\Tools\PCL_1.7.2_VC11\3rdParty\Boost\include\boost-1_57;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Tools\openCV2.4.10\opencv\build\x64\vc11\lib;C:\Tools\PCL_1.7.2_VC11\3rdParty\Boost\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -107,7 +107,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_core2410d.lib;opencv_highgui2410d.lib;opencv_imgproc2410d.lib;opencv_ml2410d.lib;opencv_nonfree2410d.lib;opencv_features2d2410d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libboost_filesystem-vc110-mt-gd-1_57.lib;libboost_system-vc110-mt-gd-1_57.lib;opencv_core2410d.lib;opencv_highgui2410d.lib;opencv_imgproc2410d.lib;opencv_ml2410d.lib;opencv_nonfree2410d.lib;opencv_features2d2410d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,13 +148,23 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="D2DetectInPic.h" />
+    <ClInclude Include="DataStruct.h" />
     <ClInclude Include="GlintRemover.h" />
+    <ClInclude Include="Operater.h" />
+    <ClInclude Include="ParamPupil.h" />
+    <ClInclude Include="RectSelect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="D2DetectInPic.cpp" />
+    <ClCompile Include="DataStruct.cpp" />
     <ClCompile Include="GlintRemover.cpp" />
+    <ClCompile Include="Operater.cpp" />
+    <ClCompile Include="ParamPupil.cpp" />
     <ClCompile Include="PupilCentroidDetect.cpp" />
+    <ClCompile Include="RectSelect.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

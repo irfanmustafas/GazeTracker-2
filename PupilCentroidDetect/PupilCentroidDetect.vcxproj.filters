@@ -24,12 +24,48 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="GlintRemover.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RectSelect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="D2DetectInPic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStruct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Operater.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ParamPupil.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PupilCentroidDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GlintRemover.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RectSelect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D2DetectInPic.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStruct.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Operater.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ParamPupil.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
